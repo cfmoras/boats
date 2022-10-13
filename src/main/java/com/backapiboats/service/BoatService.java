@@ -22,15 +22,51 @@ public class BoatService {
     }
 
     public BoatModel saveBoat(BoatModel boatModel) {
-        return boatRepository.saveBoat(boatModel);
+        if (boatModel.getId() == null) {
+            return boatRepository.saveBoat(boatModel);
+        } else {
+            Optional<BoatModel>
+                    optionalBoatModel = boatRepository.getBoat(boatModel.getId());
+            if (optionalBoatModel.isEmpty()) {
+                return
+                        boatRepository.saveBoat(boatModel);
+            } else {
+                return boatModel;
+            }
+        }
     }
 
     public boolean deleteBoat(Integer id) {
-        return boatRepository.deleteBoat(id);
+        Boolean aBoolean = getBoat(id).map(boatModel -> {
+            boatRepository.deleteBoat(boatModel);
+            return true;
+        }).orElse(false);
+        return aBoolean;
     }
 
     public BoatModel updateBoat(BoatModel boatModel) {
-        return boatRepository.updateBoat(boatModel);
-
+        if (boatModel.getId() != null) {
+            Optional<BoatModel> optionalBoatModel = boatRepository.getBoat(boatModel.getId());
+            if (!optionalBoatModel.isEmpty()) {
+                if (boatModel.getBrand() != null) {
+                    optionalBoatModel.get().setBrand(boatModel.getBrand());
+                }
+                if (boatModel.getYear() != null) {
+                    optionalBoatModel.get().setYear(boatModel.getYear());
+                }
+                if (boatModel.getName() != null) {
+                    optionalBoatModel.get().setName(boatModel.getName());
+                }
+                if (boatModel.getDescription() != null) {
+                    optionalBoatModel.get().setDescription(boatModel.getDescription());
+                }
+                boatRepository.saveBoat(optionalBoatModel.get());
+                return optionalBoatModel.get();
+            } else {
+                return boatModel;
+            }
+        } else {
+            return boatModel;
+        }
     }
 }

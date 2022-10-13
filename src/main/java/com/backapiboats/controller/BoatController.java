@@ -30,7 +30,7 @@ public class BoatController {
         return boatService.saveBoat(boatModel);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public boolean deleteBoat(@PathVariable Integer id) {
         return boatService.deleteBoat(id);
     }

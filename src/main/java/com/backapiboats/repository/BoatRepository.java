@@ -26,12 +26,13 @@ public class BoatRepository {
         return boatCrudRepository.save(boatModel);
     }
 
-    public boolean deleteBoat(Integer id) {
-        boatCrudRepository.deleteById(id);
+    public boolean deleteBoat(BoatModel boatModel) {
+        boatCrudRepository.delete(boatModel);
         return true;
     }
 
     public BoatModel updateBoat(BoatModel boatModel) {
         return boatCrudRepository.save(boatModel);
     }
+
 }

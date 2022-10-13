@@ -11,26 +11,26 @@ public class BoatModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String brand;
-    private Integer model;
-    private Integer category_id;
+    private Integer year;
     private String name;
+    private String description;
 
     public BoatModel() {
     }
 
-    public BoatModel(String brand, Integer model, Integer category_id, String name) {
+    public BoatModel(String brand, Integer year, Integer category_id, String name, String description) {
         this.brand = brand;
-        this.model = model;
-        this.category_id = category_id;
+        this.year = year;
         this.name = name;
+        this.description = description;
     }
 
-    public BoatModel(Integer id, String brand, Integer model, Integer category_id, String name) {
+    public BoatModel(Integer id, String brand, Integer year, Integer category_id, String name, String description) {
         this.id = id;
         this.brand = brand;
-        this.model = model;
-        this.category_id = category_id;
+        this.year = year;
         this.name = name;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -49,20 +49,12 @@ public class BoatModel implements Serializable {
         this.brand = brand;
     }
 
-    public Integer getModel() {
-        return model;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setModel(Integer model) {
-        this.model = model;
-    }
-
-    public Integer getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public String getName() {
@@ -73,14 +65,22 @@ public class BoatModel implements Serializable {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "BoatModel{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
-                ", model=" + model +
-                ", category_id=" + category_id +
+                ", year=" + year +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

@@ -13,21 +13,24 @@ public class ClientModel implements Serializable {
     private Integer id;
     private String name;
     private String email;
+    private String password;
     private Integer age;
 
     public ClientModel() {
     }
 
-    public ClientModel(String name, String email, Integer age) {
+    public ClientModel(String name, String email, String password, Integer age) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.age = age;
     }
 
-    public ClientModel(Integer id, String name, String email, Integer age) {
+    public ClientModel(Integer id, String name, String email, String password, Integer age) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.age = age;
     }
 
@@ -55,6 +58,14 @@ public class ClientModel implements Serializable {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -69,6 +80,7 @@ public class ClientModel implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
                 '}';
     }

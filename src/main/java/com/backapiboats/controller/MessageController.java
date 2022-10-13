@@ -30,7 +30,7 @@ public class MessageController {
         return messageService.saveMessage(messageModel);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public boolean deleteMessage(@PathVariable Integer id) {
         return messageService.deleteMessage(id);
     }
