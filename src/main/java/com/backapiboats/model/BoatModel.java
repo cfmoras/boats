@@ -1,11 +1,19 @@
 package com.backapiboats.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "boat")
-
+@NoArgsConstructor
+@Getter
+@Setter
 public class BoatModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,72 +23,17 @@ public class BoatModel implements Serializable {
     private String name;
     private String description;
 
-    public BoatModel() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    @JsonIgnoreProperties({"boats"})
+    private CategoryModel category;
 
-    public BoatModel(String brand, Integer year, Integer category_id, String name, String description) {
-        this.brand = brand;
-        this.year = year;
-        this.name = name;
-        this.description = description;
-    }
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "boat")
+    @JsonIgnoreProperties({"boat","client"})
+    private List<MessageModel> message;
 
-    public BoatModel(Integer id, String brand, Integer year, Integer category_id, String name, String description) {
-        this.id = id;
-        this.brand = brand;
-        this.year = year;
-        this.name = name;
-        this.description = description;
-    }
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "boat")
+    @JsonIgnoreProperties({"boat","message"})
+    public List<ReservationModel> reservation;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "BoatModel{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", year=" + year +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
