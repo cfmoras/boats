@@ -17,16 +17,16 @@ public class MessageModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
     private String messageText;
 
     @ManyToOne
     @JoinColumn(name = "idBoat")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JsonIgnoreProperties({"messages","clients", "reservations"})
     private BoatModel boat;
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JsonIgnoreProperties({"messages","clients", "reservations"})
     private ClientModel client;
 }
