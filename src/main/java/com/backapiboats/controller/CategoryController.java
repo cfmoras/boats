@@ -34,6 +34,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deleteCategory(@PathVariable ("id") Integer id) {
         return categoryService.deleteCategory(id);
     }
