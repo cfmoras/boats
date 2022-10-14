@@ -30,10 +30,10 @@ public class BoatModel implements Serializable {
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "boat")
     @JsonIgnoreProperties({"boat","client"})
-    private List<MessageModel> message;
+    private List<MessageModel> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "boat")
     @JsonIgnoreProperties({"boat","message"})
-    public List<ReservationModel> reservation;
+    public List<ReservationModel> reservations;
 
 }
